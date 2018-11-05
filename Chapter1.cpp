@@ -10,11 +10,13 @@ void Chapter1::init() {
 	exercise_definitions.emplace_back("Plus grand denominateur commun entre deux entiers");
 	exercise_definitions.emplace_back("Plus petit multiplieur commun entre deux ou plusieurs entiers");
 	exercise_definitions.emplace_back("Nombre premier le plus grand, plus petit que le nombre rentre en parametre");
+	exercise_definitions.emplace_back("Liste des paires de nombres sexy jusqu'a une valeur donnee");
 
 	exercices_functions.emplace_back(exercice1);
 	exercices_functions.emplace_back(exercice2);
 	exercices_functions.emplace_back(exercice3);
 	exercices_functions.emplace_back(exercice4);
+	exercices_functions.emplace_back(exercice5);
 }
 
 Chapter1::Chapter1() {
@@ -109,4 +111,17 @@ void Chapter1::exercice4() {
 	}
 
 	std::cout << "Le plus petit nombre premier avant est " + std::to_string(result) << std::endl;
+}
+
+void Chapter1::exercice5() {
+	int input = 0;
+	std::cout << "Entrez un nombre positif : ";
+	std::cin >> input;
+
+	std::cout << "Liste des nombres premiers sexy jusqu'a " + std::to_string(input) + " : " << std::endl;
+	for(int i = 0 ; i < input ; i++) {
+		if(maths::is_prime(i) && maths::is_prime(i + 6)) {
+			std::cout << "(" + std::to_string(i) + "," + std::to_string(i + 6) + ")" << std::endl;
+		}
+	}
 }
