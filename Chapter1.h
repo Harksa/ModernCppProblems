@@ -20,6 +20,11 @@ public:
 	 */
 	static void exercice3();
 
+	/**
+	 * \brief Plus grand nombre premier avant le nombre donnée en paramètre
+	 */
+	static void exercice4();
+
 	Chapter1();
 	~Chapter1() = default;
 
