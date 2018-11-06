@@ -45,6 +45,12 @@ public:
 	 */
 	static void exercice7();
 
+	/**
+	 * \brief Les nombres d'Amstrong ou nombres narcissiques à 3 chiffres
+	 * 371 est un nombre d'Amstrong car 3^3 + 7^3 + 1^3 = 371
+	 */
+	static void exercice8();
+
 	Chapter1();
 	~Chapter1() = default;
 

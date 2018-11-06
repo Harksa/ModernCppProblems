@@ -8,21 +8,23 @@
 void Chapter1::init() {
 	chapter_definition = "Problemes de math.";
 
-	exercise_definitions.emplace_back("Somme des entiers divisibles par 3 et 5");
-	exercise_definitions.emplace_back("Plus grand denominateur commun entre deux entiers");
-	exercise_definitions.emplace_back("Plus petit multiplieur commun entre deux ou plusieurs entiers");
-	exercise_definitions.emplace_back("Nombre premier le plus grand, plus petit que le nombre rentre en parametre");
-	exercise_definitions.emplace_back("Liste des paires de nombres sexy jusqu'a une valeur donnee");
-	exercise_definitions.emplace_back("Nombres abondants et son abondance jusqu'a une valeur donnee");
-	exercise_definitions.emplace_back("Nombres amicaux jusqu'a 1 000 000");
+	exercises_definitions.emplace_back("Somme des entiers divisibles par 3 et 5");
+	exercises_definitions.emplace_back("Plus grand denominateur commun entre deux entiers");
+	exercises_definitions.emplace_back("Plus petit multiplieur commun entre deux ou plusieurs entiers");
+	exercises_definitions.emplace_back("Nombre premier le plus grand, plus petit que le nombre rentre en parametre");
+	exercises_definitions.emplace_back("Liste des paires de nombres sexy jusqu'a une valeur donnee");
+	exercises_definitions.emplace_back("Nombres abondants et son abondance jusqu'a une valeur donnee");
+	exercises_definitions.emplace_back("Nombres amicaux jusqu'a 1 000 000");
+	exercises_definitions.emplace_back("Nombre d'Amstrong a 3 chiffres");
 
-	exercices_functions.emplace_back(exercice1);
-	exercices_functions.emplace_back(exercice2);
-	exercices_functions.emplace_back(exercice3);
-	exercices_functions.emplace_back(exercice4);
-	exercices_functions.emplace_back(exercice5);
-	exercices_functions.emplace_back(exercice6);
-	exercices_functions.emplace_back(exercice7);
+	exercises_functions.emplace_back(exercice1);
+	exercises_functions.emplace_back(exercice2);
+	exercises_functions.emplace_back(exercice3);
+	exercises_functions.emplace_back(exercice4);
+	exercises_functions.emplace_back(exercice5);
+	exercises_functions.emplace_back(exercice6);
+	exercises_functions.emplace_back(exercice7);
+	exercises_functions.emplace_back(exercice8);
 }
 
 Chapter1::Chapter1() {
@@ -174,4 +176,18 @@ void Chapter1::exercice7() {
 		}
 	
 	} 
+}
+
+void Chapter1::exercice8() {
+	for(int i = 1 ; i < 9 ; i++) { //Commencer à 1 car 3 chiffres seulement. Les résultats 0 et 1 sont donc écartés
+		for(int j = 0 ; j < 9 ; j++) {
+			for (int k = 0 ; k < 9 ; k++) {
+				const int ijk = i * 100 + j * 10 + k;
+				const int power3_of_ijk = static_cast<int> (std::pow(i,3) + std::pow(j,3) + std::pow(k, 3));
+				if(ijk == power3_of_ijk) {
+					std::cout << ijk << std::endl;
+				}
+			}
+		}
+	}
 }
