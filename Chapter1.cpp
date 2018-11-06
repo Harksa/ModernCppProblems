@@ -12,7 +12,7 @@ void Chapter1::init() {
 	exercise_definitions.emplace_back("Plus petit multiplieur commun entre deux ou plusieurs entiers");
 	exercise_definitions.emplace_back("Nombre premier le plus grand, plus petit que le nombre rentre en parametre");
 	exercise_definitions.emplace_back("Liste des paires de nombres sexy jusqu'a une valeur donnee");
-	exercise_definitions.emplace_back("Nombres abondants et leurs nombres lies jusqu'a une valeur donnee");
+	exercise_definitions.emplace_back("Nombres abondants et son abondance jusqu'a une valeur donnee");
 
 	exercices_functions.emplace_back(exercice1);
 	exercices_functions.emplace_back(exercice2);
@@ -126,7 +126,7 @@ void Chapter1::exercice5() {
 	std::cout << "Entrez un nombre positif : ";
 	std::cin >> input;
 
-	std::cout << "Liste des nombres premiers sexy jusqu'a " + std::to_string(input) + " : " << std::endl;
+	std::cout << "Liste des nombres premiers sexy jusqu'a " << input << " : " << std::endl;
 	for(int i = 0 ; i <= input ; i++) {
 		if(maths::is_prime(i) && maths::is_prime(i + 6)) {
 			std::cout << "(" << i << "," << i + 6 << ")" << std::endl;
@@ -135,5 +135,28 @@ void Chapter1::exercice5() {
 }
 
 void Chapter1::exercice6() {
-	
+	int input = 0;
+	std::cout << "Entrez un nombre positif : ";
+	std::cin >> input;
+
+	if(input < 12) {
+		std::cout << "Il n'existe pas de nombre abondants avant 12." << std::endl;
+	} else {
+		std::vector<int> number_list;
+		for(int i = 12 ; i <= input ; i++) {
+
+			for(int j = 1 ; j < i ; j++) {
+				if(i % j == 0) {
+					number_list.emplace_back(j);
+				}
+			}
+
+			const int somme = std::accumulate(number_list.begin(), number_list.end(), 0) ;
+			if(somme > i) {
+				std::cout << "Nombre abondants " << i << ". Abondance : " << somme - i << std::endl;
+			}
+
+			number_list.clear();
+		}
+	}
 }
