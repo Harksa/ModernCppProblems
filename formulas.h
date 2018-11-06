@@ -78,8 +78,8 @@ namespace formulas {
 	 * \param list La liste où seront stockés les nombres premiers
 	 * \param iterator l'itérateur pour la division
 	 */
-	inline void prime_decomposition(const int number, std::vector<int> &list, const int iterator) {
-		const int division = number / iterator;
+	inline void calcul_prime_decomposition(const unsigned int number, std::vector<unsigned int> &list, const int iterator) {
+		const unsigned int division = number / iterator;
 
 		if(division == 1) {
 			list.emplace_back(number);
@@ -88,9 +88,15 @@ namespace formulas {
 
 		if(number % iterator == 0) {
 			list.emplace_back(iterator);
-			prime_decomposition(division, list, 2);
+			calcul_prime_decomposition(division, list, 2);
 		} else {
-			prime_decomposition(number, list, iterator + 1);
+			calcul_prime_decomposition(number, list, iterator + 1);
 		}
+	}
+
+	inline std::vector<unsigned int> prime_decomposition(int number) {
+		std::vector<unsigned int> result;
+		calcul_prime_decomposition(number, result, 2);
+		return result;
 	}
 }

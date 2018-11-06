@@ -195,13 +195,11 @@ void Chapter1::exercice8() {
 }
 
 void Chapter1::exercice9() {
-	int input = 0;
+	unsigned int input = 0;
 	std::cout << "Rentrez un nombre positif : ";
 	std::cin >> input;
 
-	std::vector<int> list;
-
-	formulas::prime_decomposition(input, list, 2);
+	std::vector<unsigned int> list = formulas::prime_decomposition(input);
 
 	std::cout << "Formule decomposee en nombres premier : ";
 	for(unsigned int i = 0 ; i < list.size() ; i++) {
