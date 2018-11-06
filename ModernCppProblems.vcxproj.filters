@@ -35,7 +35,7 @@
     <ClInclude Include="ChapterSelecter.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="math.h">
+    <ClInclude Include="formulas.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>

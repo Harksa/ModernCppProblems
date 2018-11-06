@@ -1,8 +1,9 @@
 #include "Chapter1.h"
 #include <complex>
-#include <ppltasks.h>
-#include "math.h"
 #include <numeric>
+
+#include "formulas.h"
+#include <set>
 
 void Chapter1::init() {
 	chapter_definition = "Problemes de math.";
@@ -13,6 +14,7 @@ void Chapter1::init() {
 	exercise_definitions.emplace_back("Nombre premier le plus grand, plus petit que le nombre rentre en parametre");
 	exercise_definitions.emplace_back("Liste des paires de nombres sexy jusqu'a une valeur donnee");
 	exercise_definitions.emplace_back("Nombres abondants et son abondance jusqu'a une valeur donnee");
+	exercise_definitions.emplace_back("Nombres amicaux jusqu'a 1 000 000");
 
 	exercices_functions.emplace_back(exercice1);
 	exercices_functions.emplace_back(exercice2);
@@ -20,6 +22,7 @@ void Chapter1::init() {
 	exercices_functions.emplace_back(exercice4);
 	exercices_functions.emplace_back(exercice5);
 	exercices_functions.emplace_back(exercice6);
+	exercices_functions.emplace_back(exercice7);
 }
 
 Chapter1::Chapter1() {
@@ -64,9 +67,9 @@ void Chapter1::exercice2() {
 	int result = 0;
 
 	if(premier_div > second_div)	
-		result = maths::gcm(premier_div, second_div);
+		result = formulas::gcm(premier_div, second_div);
 	else
-		result = maths::gcm(second_div, premier_div);
+		result = formulas::gcm(second_div, premier_div);
 
 	std::cout << "Plus grand denominateur commun : " << result << std::endl;
 }
@@ -86,14 +89,14 @@ void Chapter1::exercice3() {
 
 	/* Première version
 	for(unsigned int i = 0 ; i < entiers.size() - 1; i++) {
-		entiers[i + 1] = maths::lcm(entiers[i], entiers[i + 1]);
+		entiers[i + 1] = formulas::lcm(entiers[i], entiers[i + 1]);
 	}
 
 	std::cout << "Plus petit multiple commun : " + std::to_string(entiers.back()) << std::endl;
 	*/
 
 	//Seconde version
-	std::cout << "Plus petit multiple commun : " << std::accumulate(entiers.begin() + 1, entiers.end(), entiers.front(), maths::lcm) << std::endl;
+	std::cout << "Plus petit multiple commun : " << std::accumulate(entiers.begin() + 1, entiers.end(), entiers.front(), formulas::lcm) << std::endl;
 
 	entiers.clear();
 }
@@ -112,7 +115,7 @@ void Chapter1::exercice4() {
 
 	int result = 0;
 	for(int i = input ; i > 0 ; i -= 2) {
-		if(maths::is_prime(i)) {
+		if(formulas::is_prime(i)) {
 			result = i;
 			break;
 		}
@@ -128,7 +131,7 @@ void Chapter1::exercice5() {
 
 	std::cout << "Liste des nombres premiers sexy jusqu'a " << input << " : " << std::endl;
 	for(int i = 0 ; i <= input ; i++) {
-		if(maths::is_prime(i) && maths::is_prime(i + 6)) {
+		if(formulas::is_prime(i) && formulas::is_prime(i + 6)) {
 			std::cout << "(" << i << "," << i + 6 << ")" << std::endl;
 		}
 	}
@@ -142,21 +145,33 @@ void Chapter1::exercice6() {
 	if(input < 12) {
 		std::cout << "Il n'existe pas de nombre abondants avant 12." << std::endl;
 	} else {
-		std::vector<int> number_list;
 		for(int i = 12 ; i <= input ; i++) {
-
-			for(int j = 1 ; j < i ; j++) {
-				if(i % j == 0) {
-					number_list.emplace_back(j);
-				}
-			}
-
-			const int somme = std::accumulate(number_list.begin(), number_list.end(), 0) ;
+			const int somme = formulas::sum_divisors(i);
 			if(somme > i) {
 				std::cout << "Nombre abondants " << i << ". Abondance : " << somme - i << std::endl;
 			}
-
-			number_list.clear();
 		}
 	}
+}
+
+void Chapter1::exercice7() {
+	/* 
+	 * https://www.dcode.fr/liste-diviseurs-nombre section "Que sont les nombres amicaux ?"
+	 * 220 et 284 sont amicaux :
+	 * sum_div(220) = 284 et sum_div(284) = 220
+	 */
+	constexpr int max = 1000000;
+	std::set<int> already_showed;
+	for(int i = 1 ; i < max ; i++) {
+		const int somme_div_1 = formulas::sum_divisors(i);
+		const int somme_div_2 = formulas::sum_divisors(somme_div_1);
+
+		if(somme_div_2 == i && somme_div_1 != somme_div_2) {
+			if(already_showed.find(i) == already_showed.end()) {
+				already_showed.insert(somme_div_1);
+				std::cout << "(" << somme_div_2 << "," << somme_div_1 << ")" << std::endl;
+			}
+		}
+	
+	} 
 }

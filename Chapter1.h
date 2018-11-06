@@ -38,6 +38,13 @@ public:
 	 */
 	static void exercice6();
 
+	/**
+	 * \brief Nombres amicaux avant 1 000 000
+	 * Prenons a et b, deux entiers positifs.
+	 * Ils sont dit amicaux si la somme des diviseurs de a = b et si la somme des diviseurs de b = a
+	 */
+	static void exercice7();
+
 	Chapter1();
 	~Chapter1() = default;
 
