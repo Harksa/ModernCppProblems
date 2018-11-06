@@ -16,6 +16,7 @@ void Chapter1::init() {
 	exercises_definitions.emplace_back("Nombres abondants et son abondance jusqu'a une valeur donnee");
 	exercises_definitions.emplace_back("Nombres amicaux jusqu'a 1 000 000");
 	exercises_definitions.emplace_back("Nombre d'Amstrong a 3 chiffres");
+	exercises_definitions.emplace_back("Decomposition en nombres premiers");
 
 	exercises_functions.emplace_back(exercice1);
 	exercises_functions.emplace_back(exercice2);
@@ -25,6 +26,7 @@ void Chapter1::init() {
 	exercises_functions.emplace_back(exercice6);
 	exercises_functions.emplace_back(exercice7);
 	exercises_functions.emplace_back(exercice8);
+	exercises_functions.emplace_back(exercice9);
 }
 
 Chapter1::Chapter1() {
@@ -189,5 +191,21 @@ void Chapter1::exercice8() {
 				}
 			}
 		}
+	}
+}
+
+void Chapter1::exercice9() {
+	int input = 0;
+	std::cout << "Rentrez un nombre positif : ";
+	std::cin >> input;
+
+	std::vector<int> list;
+
+	formulas::prime_decomposition(input, list, 2);
+
+	std::cout << "Formule decomposee en nombres premier : ";
+	for(unsigned int i = 0 ; i < list.size() ; i++) {
+		std::cout << list[i];
+		i == (list.size() - 1) ? std::cout <<  std::endl : std::cout << " x "; 
 	}
 }

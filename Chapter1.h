@@ -51,10 +51,14 @@ public:
 	 */
 	static void exercice8();
 
+	/**
+	 * \brief Décomposition d'un nombre en nombre premiers
+	 * Exemple : 100 = 2 * 2 * 5 * 5
+	 */
+	static void exercice9();
+
 	Chapter1();
 	~Chapter1() = default;
-
-private:
 
 };
 
