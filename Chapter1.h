@@ -31,6 +31,12 @@ public:
 	 */
 	static void exercice5();
 
+	/**
+	 * \brief Nombres abondants
+	 * Un nombre est abondant si la somme de ses diviseurs est supérieur à lui même
+	 */
+	static void exercice6();
+
 	Chapter1();
 	~Chapter1() = default;
 
