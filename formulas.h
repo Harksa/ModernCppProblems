@@ -1,5 +1,4 @@
 #pragma once
-#include <numeric>
 
 namespace formulas {
 	//https://en.wikipedia.org/wiki/Greatest_common_divisor#Using_Euclid's_algorithm
@@ -59,7 +58,7 @@ namespace formulas {
 		int somme = 1;
 		for(int i = 2 ; i <= std::sqrt(p) ; i++) {
 			if(p % i == 0) {
-				if(sqrt(p) != i) {
+				if(std::sqrt(p) != i) {
 					somme += i;
 					somme += p / i;
 				} else {

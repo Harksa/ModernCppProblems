@@ -21,6 +21,7 @@ void Chapter1::init() {
 	exercises_definitions.emplace_back("Decomposition en nombres premiers");
 
 	exercises_definitions.emplace_back("Affichage d'un nombre en binaire, son code de gray et son code de gray decode");
+	exercises_definitions.emplace_back("Ecriture d'un nombre donne en nombre romain");
 
 	exercises_functions.emplace_back(exercice1);
 	exercises_functions.emplace_back(exercice2);
@@ -33,6 +34,7 @@ void Chapter1::init() {
 	exercises_functions.emplace_back(exercice9);
 
 	exercises_functions.emplace_back(exercice10);
+	exercises_functions.emplace_back(exercice11);
 }
 
 Chapter1::Chapter1() {
@@ -233,4 +235,35 @@ void Chapter1::exercice10() {
 
 		std::cout << std::setw(2) << i << " : " << binary << " " << gray_code << " " << decoded_gray_code << std::endl;
 	}
+}
+
+void Chapter1::exercice11() {
+	int input = 0;
+	std::cout << "Entrez un nombre positif supperieur a 0 : ";
+	std::cin >> input;
+
+	//https://www.dcode.fr/chiffres-romains
+	std::vector<std::pair<int, std::string>> roman_letters {
+		std::make_pair(1000, "M"),   std::make_pair(900, "CM"),
+		std::make_pair(500,  "D"),   std::make_pair(400, "CD"),
+		std::make_pair(100,  "C"),   std::make_pair(90,  "XC"),
+		std::make_pair(50,   "L"),   std::make_pair(40,  "XL"),
+		std::make_pair(10,   "X"),   std::make_pair(9,   "IX"),
+		std::make_pair(5,    "V"),	 std::make_pair(4,   "IV"),
+		std::make_pair(3,    "III"), std::make_pair(2,   "II"),
+		std::make_pair(1,    "I")
+	};
+
+	std::string result;
+	while (input > 0) {
+		for (const auto& roman_letter : roman_letters){
+			if(input >= roman_letter.first) {
+				result += roman_letter.second;
+				input -= roman_letter.first;
+				break;
+			} 
+		}
+	}
+
+	std::cout << "Conversion en nombre romain : " << result << std::endl;
 }

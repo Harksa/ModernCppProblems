@@ -62,6 +62,11 @@ public:
 	 */
 	static void exercice10();
 
+	/**
+	 * \brief Conversion d'un chiffre en binaire en un chiffre romain
+	 */
+	static void exercice11();
+
 	Chapter1();
 	~Chapter1() = default;
 
