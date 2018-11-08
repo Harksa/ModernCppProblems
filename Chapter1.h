@@ -57,6 +57,11 @@ public:
 	 */
 	static void exercice9();
 
+	/**
+	 * \brief Affichage d'un chiffre en binaire, code de gray et en code de gray décodé.
+	 */
+	static void exercice10();
+
 	Chapter1();
 	~Chapter1() = default;
 

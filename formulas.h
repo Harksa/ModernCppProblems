@@ -94,7 +94,7 @@ namespace formulas {
 		}
 	}
 
-	inline std::vector<unsigned int> prime_decomposition(int number) {
+	inline std::vector<unsigned int> prime_decomposition(unsigned int number) {
 		std::vector<unsigned int> result;
 		calcul_prime_decomposition(number, result, 2);
 		return result;

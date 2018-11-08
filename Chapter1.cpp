@@ -4,6 +4,8 @@
 
 #include "formulas.h"
 #include <set>
+#include <bitset>
+#include <iomanip>
 
 void Chapter1::init() {
 	chapter_definition = "Problemes de math.";
@@ -18,6 +20,8 @@ void Chapter1::init() {
 	exercises_definitions.emplace_back("Nombre d'Amstrong a 3 chiffres");
 	exercises_definitions.emplace_back("Decomposition en nombres premiers");
 
+	exercises_definitions.emplace_back("Affichage d'un nombre en binaire, son code de gray et son code de gray decode");
+
 	exercises_functions.emplace_back(exercice1);
 	exercises_functions.emplace_back(exercice2);
 	exercises_functions.emplace_back(exercice3);
@@ -27,6 +31,8 @@ void Chapter1::init() {
 	exercises_functions.emplace_back(exercice7);
 	exercises_functions.emplace_back(exercice8);
 	exercises_functions.emplace_back(exercice9);
+
+	exercises_functions.emplace_back(exercice10);
 }
 
 Chapter1::Chapter1() {
@@ -164,7 +170,7 @@ void Chapter1::exercice7() {
 	 * 220 et 284 sont amicaux :
 	 * sum_div(220) = 284 et sum_div(284) = 220
 	 */
-	constexpr int max = 1000000;
+	constexpr int max = 1'000'000;
 	std::set<int> already_showed;
 	for(int i = 1 ; i < max ; i++) {
 		const int somme_div_1 = formulas::sum_divisors(i);
@@ -205,5 +211,26 @@ void Chapter1::exercice9() {
 	for(unsigned int i = 0 ; i < list.size() ; i++) {
 		std::cout << list[i];
 		i == (list.size() - 1) ? std::cout <<  std::endl : std::cout << " x "; 
+	}
+}
+
+void Chapter1::exercice10() {
+	constexpr int max = 32;
+
+	for(int i = 0 ; i < max ; i++) {
+		const std::bitset<5> binary = i;
+
+		//https://www.dcode.fr/code-gray
+		//Utilisation du ou exclusif et du shift pour obtenir le code de gray
+		const auto gray_code = binary ^ (binary >> 1);
+
+		//Decodage
+		auto temp_gray_code = gray_code;
+		auto decoded_gray_code = temp_gray_code;
+		while ( (temp_gray_code >>= 1).count() != 0 ) {
+			decoded_gray_code ^= temp_gray_code;
+		}
+
+		std::cout << std::setw(2) << i << " : " << binary << " " << gray_code << " " << decoded_gray_code << std::endl;
 	}
 }
