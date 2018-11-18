@@ -67,6 +67,16 @@ public:
 	 */
 	static void exercice11();
 
+	/**
+	 * \brief Calculer la plus grande séquence de Collatz jusqu'a 1 million et afficher sa taille
+	 * D'après cette conjecture, on démarre avec un nombre entier positif.
+	 * S'il est paire, on divise le nombre par deux
+	 * S'il est impaire, on effectue l'opération (3n + 1)
+	 * On réutilise à chaque fois le nombre issue des opérations si dessus.
+	 * La conjecture indique que l'on finit toujours par retomber sur 1 
+	 */
+	static void exercice12();
+
 	Chapter1();
 	~Chapter1() = default;
 

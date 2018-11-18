@@ -6,6 +6,7 @@
 #include <set>
 #include <bitset>
 #include <iomanip>
+#include <map>
 
 void Chapter1::init() {
 	chapter_definition = "Problemes de math.";
@@ -22,6 +23,7 @@ void Chapter1::init() {
 
 	exercises_definitions.emplace_back("Affichage d'un nombre en binaire, son code de gray et son code de gray decode");
 	exercises_definitions.emplace_back("Ecriture d'un nombre donne en nombre romain");
+	exercises_definitions.emplace_back("Plus grande sequence de Collatz jusqu'a 1 million et afficher sa taille");
 
 	exercises_functions.emplace_back(exercice1);
 	exercises_functions.emplace_back(exercice2);
@@ -35,6 +37,7 @@ void Chapter1::init() {
 
 	exercises_functions.emplace_back(exercice10);
 	exercises_functions.emplace_back(exercice11);
+	exercises_functions.emplace_back(exercice12);
 }
 
 Chapter1::Chapter1() {
@@ -266,4 +269,37 @@ void Chapter1::exercice11() {
 	}
 
 	std::cout << "Conversion en nombre romain : " << result << std::endl;
+}
+
+void Chapter1::exercice12() {
+
+	const unsigned int max = 1'000'000;
+
+	std::map<unsigned long long, int> collatz_map{std::make_pair(1,0)};
+
+	int collatz_value = 0, collatz_lenght = 0;
+	for(unsigned int i = 2 ; i < max ; i++) {
+		unsigned long long n = i;
+		unsigned int size = 0;
+		auto it = collatz_map.find(n);
+		while(it == collatz_map.end()) {
+			if (n % 2 == 0)
+				n /= 2;
+			else
+				n = 3 * n + 1;
+
+			size++;
+			it = collatz_map.find(n);
+		}
+		int current_size = it->second + size;
+		collatz_map.insert(std::make_pair(i, current_size));
+
+		if(current_size > collatz_lenght) {
+			collatz_value = i;
+			collatz_lenght = current_size;
+		}
+
+	}
+
+	  std::cout << "Sequence de collatz la plus grande : " << collatz_value << " avec une taille de " << collatz_lenght << "." << std::endl;	
 }
